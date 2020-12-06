@@ -2,8 +2,15 @@ import requests
 
 from mykey import KEY
 
-def is_S_parent(sid):
+#
+ # @brief returns a steamID and link to steam profile
+ # @date 12/5/2020
+ # @param sid is the steam id the function takes in from the discord chat
+ # @returns steamID after being checked with the steamAPI and the link to the related steam profile
+#
 
+def is_S_parent(sid):
+    #after generating a steam api key, someone can use this link to check if a user is using a family shared account by checking what the link returns
     res = (requests.get("http://api.steampowered.com/IPlayerService/IsPlayingSharedGame/v0001/?key="+KEY+"&format=json&steamid="+sid+"&appid_playing=4000"))
 
     new_sid = (res.json()['response']['lender_steamid'])
